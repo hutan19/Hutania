@@ -1,0 +1,35 @@
+---
+title: "hw.RMD"
+author: "Hutan Vahdat"
+date: "October 21, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+<h1 style="font-size:26px;">Below is temperature information on Des Moines, IA between 1995 & 2018</h1>
+
+
+```{r echo=FALSE, warning = FALSE}
+df <- read.table("IADESMOI.txt", col.names = c("mon", "day", "yr", "temp"),
+           na.strings = "-99")
+```
+<br>
+```{r echo=FALSE, warning = FALSE, comment = ""}
+m <- mean(df$temp, na.rm = T)
+sd <- sd(df$temp, na.rm = TRUE)
+message("Average temperature is: ", m)
+message("Standard deviation is: ", sd)
+```
+
+```{r echo=FALSE, warning = FALSE, comment = "", message = FALSE}
+suppressPackageStartupMessages(library(ggplot2))
+suppressWarnings(qplot(temp,     
+      data = df,        
+      geom = "histogram"))
+
+```
+
